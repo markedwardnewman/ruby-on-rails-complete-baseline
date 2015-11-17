@@ -1,8 +1,19 @@
 @import "bootstrap-sprockets";
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
 @import "bootstrap";
 
 
 /* mixins, variables, etc. */
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
 
 $gray-medium-light: #eaeaea;
 
@@ -216,16 +227,25 @@ footer {
   @include box_sizing;
 }
 
-#chapter_6 ul,
-#chapter_7 ul {
+#chapter ul {
   text-align: left;
   list-style-type: none;
 }
  
-#chapter_6 li,
-#chapter_7 li {
+#chapter li {
   margin-left: 16px;
 }
 
 
 
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}

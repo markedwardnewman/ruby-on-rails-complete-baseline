@@ -13,8 +13,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: { case_sensitive: false }
   
   # attribude: password
-  validates :password, presence: true
-  validates :password, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # has_secure_password adds the following functionality:
     # the ability to save a securely hashed password_digest (a hashed password) attribute to the database
