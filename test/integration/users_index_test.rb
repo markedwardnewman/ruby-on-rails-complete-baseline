@@ -33,7 +33,7 @@ end
 
 # see https://www.railstutorial.org/book/updating_and_deleting_users#sec-unsuccessful_edits
 #   Listing 9.57: An integration test for delete links and destroying users.
-# as to why the below has been commented out yep
+# as to why the below has been commented out yeppers
   # test "index including pagination" do
   #   log_in_as(@user)
   #   get users_path
