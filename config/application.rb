@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module SampleApp
   class Application < Rails::Application
+    Rails.configuration.host_test = 'rails-tutorial-markedwardnewman.c9.io'
+    Rails.configuration.host_development = 'rails-tutorial-markedwardnewman.c9.io'
+    Rails.configuration.host_production = 'still-anchorage-2414.herokuapp.com'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

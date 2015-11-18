@@ -59,6 +59,17 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
+  
+  # Care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  
+  # Tell Action Mailer not to deliver emails to the real world.
+  # The :test delivery method accumulates sent emails in the
+  # ActionMailer::Base.deliveries array.
+  config.action_mailer.delivery_method = :test
+  
+  # Rails.configuration.host_production is a variable specified in the config/application.rb file
+  config.action_mailer.default_url_options = { host: Rails.configuration.host_production }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
