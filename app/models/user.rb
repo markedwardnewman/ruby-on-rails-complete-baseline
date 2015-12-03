@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -41,12 +42,6 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, User.digest(remember_token))
   end
   
-  # Returns true if the given token matches the digest
-  # def authenticated?(remember_token)
-  #   return false if remember_digest.nil?
-  #   BCrypt::Password.new(remember_digest).is_password?(remember_token)
-  # end
-  
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
@@ -85,6 +80,12 @@ class User < ActiveRecord::Base
   # Returns true if a password reset has expired.
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+  
+  # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Micropost.where("user_id = ?", id)
   end
   
   # All methods defined in a class after private are automatically hidden
