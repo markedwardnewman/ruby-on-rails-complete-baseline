@@ -7,10 +7,7 @@ $font-family-base:        $font-family-sans-serif !default;
 @import "bootstrap";
 
 
-
-
 /* mixins, variables, etc. */
-
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -27,9 +24,7 @@ $gray-medium-light: #eaeaea;
 
 
 
-
 /* universal */
-
 body {
   padding-top: 60px;
 }
@@ -51,9 +46,7 @@ textarea {
 
 
 
-
 /* typography */
-
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -81,9 +74,7 @@ p {
 
 
 
-
 /* header */
-
 #logo {
   float: left;
   margin-right: 10px;
@@ -101,9 +92,7 @@ p {
 
 
 
-
 /* forms */
-
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -146,9 +135,7 @@ input {
 
 
 
-
 /* sidebar */
-
 aside {
   section.user_info {
     margin-top: 20px;
@@ -184,11 +171,47 @@ aside {
   margin-top: 15px;
 }
 
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
 
 
 
 /* footer */
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -216,7 +239,6 @@ footer {
 
 
 /* microposts */
-
 .microposts {
   list-style: none;
   padding: 0;
@@ -264,9 +286,7 @@ span.picture {
 
 
 
-
 /* miscellaneous */
-
 .debug_dump {
   clear: both;
   float: left;
@@ -279,7 +299,7 @@ span.picture {
   text-align: left;
   list-style-type: none;
 }
- 
+
 #chapter li {
   margin-left: 16px;
 }
@@ -287,7 +307,6 @@ span.picture {
 
 
 /* Users index */
-
 .users {
   list-style: none;
   margin: 0;

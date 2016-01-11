@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
   def setup #<- a "showcase" example of what a User object should be like
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
   end
-  
+
   test "should be valid" do   #<- make sure the User object exists
     assert @user.valid?
   end
@@ -14,12 +14,12 @@ class UserTest < ActiveSupport::TestCase
     @user.name = "     "      #<- make sure the User.name attribute is not empty
     assert_not @user.valid?
   end
-  
+
   test "email should be present" do
     @user.email = "     "
     assert_not @user.valid?   #<- make sure the User.email attribute is not empty
   end
-  
+
 # LENGTH
   test "name should not be too long" do
     @user.name = "a" * 51
@@ -30,7 +30,7 @@ class UserTest < ActiveSupport::TestCase
     @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
-  
+
 # FORMAT
   # Two thing to keep in mind for email validation that is coupled with email verification (user has to click an email link to have their info put into a db)
     # 1. It should be for the user's benefit only.  Ie, if they mistyped something.  Why?
@@ -42,7 +42,7 @@ class UserTest < ActiveSupport::TestCase
       assert @user.valid?, "#{valid_address.inspect} should be valid"   #<- a custom error message that identifies the failing address
     end
   end
-  
+
   test "email validation should reject invalid addresses" do
     invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
                            foo@bar_baz.com foo@bar+baz.com]
@@ -51,7 +51,7 @@ class UserTest < ActiveSupport::TestCase
       assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
     end
   end
-  
+
 # UNIQUENESS
   test "email addresses should be unique" do
     duplicate_user = @user.dup
@@ -59,7 +59,7 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not duplicate_user.valid?
   end
-  
+
 # PASSWORD minimum standards
   test "password should be present (nonblank)" do
     @user.password = @user.password_confirmation = " " * 6
@@ -70,16 +70,45 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
-  
+
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
   end
-  
+
   test "associated microposts should be destroyed" do
     @user.save
     @user.microposts.create!(content: "Lorem ipsum")
     assert_difference 'Micropost.count', -1 do
       @user.destroy
+    end
+  end
+
+  test "should follow and unfollow a user" do
+    mark  = users(:mark)
+    archer   = users(:archer)
+    assert_not mark.following?(archer)
+    mark.follow(archer)
+    assert mark.following?(archer)
+    assert archer.followers.include?(mark)
+    mark.unfollow(archer)
+    assert_not mark.following?(archer)
+  end
+
+  test "feed should have the right posts" do
+    mark = users(:mark)
+    archer  = users(:archer)
+    lana    = users(:lana)
+    # Posts from followed user
+    lana.microposts.each do |post_following|
+      assert mark.feed.include?(post_following)
+    end
+    # Posts from self
+    mark.microposts.each do |post_self|
+      assert mark.feed.include?(post_self)
+    end
+    # Posts from unfollowed user
+    archer.microposts.each do |post_unfollowed|
+      assert_not mark.feed.include?(post_unfollowed)
     end
   end
 end
