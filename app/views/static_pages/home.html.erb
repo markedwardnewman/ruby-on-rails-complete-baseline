@@ -17,26 +17,91 @@
     </div>
   </div>
 <% else %>
-<div class="center jumbotron">
-  <h1>Now with user posts and image storage via AWS bucket storage</h1>
-  <br>
-  <div id="chapter" class="container">
-    <div class="row">
-      <ul class="col-md-4">
-        <b></b>
-        <li></li>
+<div class="home jumbotron">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-left">This site demonstrates the ability to create and follow micro-posts once a successful registration has been completed.  It features...
+</h2>
+      <br>
+      <ul>
+        <li>
+          <strong>Secure Sockets Layer (SSL) encryption.</strong> It encrypts all relevant information before leaving your browser, verified via the https:// in the URL field above.
+        </li>
+        <li>
+          <strong>Form validation</strong> using regular expression constraints
+        </li>
+        <li>
+          Server-side <strong>username validation</strong> (for uniqueness)
+        </li>
+        <li>
+          <strong>Secure password encryption</strong> using <a href="https://en.wikipedia.org/wiki/Bcrypt">bcrypt</a>, an extremely resistant salted hash.
+        </li>
+        <li>
+          <strong>Account authorization</strong> and <strong>password reset</strong>, both via email
+        </li>
+        <li>
+          <strong>Account editing</strong>
+        </li>
+        <li>
+          <strong>Administration accounts</strong>
+        </li>
+        <li>
+          <strong>Session cookies</strong> that expire once the browser is closed
+        </li>
+        <li>
+          The ability to <strong>create and edit micro-posts</strong>
+        </li>
+        <li>
+          The ability to <strong>follow other users' micro-posts</strong>
+        </li>
       </ul>
-      <ul class="col-md-4">
-        <b></b>
-        <li></li>
-      </ul>
-
+      <br>
     </div>
-  </div>
-  <h2>This is the home page for the <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a> sample application.</h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    <div class="col-md-12">
+      <h2 class="text-left">It was developed using the following methods and tools...</h2>
+      <br>
+      <ul>
+        <li>
+          <a href="https://c9.io/">Cloud 9's</a> IDE, where I wrote most of the code
+        </li>
+        <li>
+          Automated <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test-driven development</a> (TDD), a testing technique in which failing tests are written first
+        </li>
+        <li>
+          <a href="http://www.sqlite.org/">SQLite's</a> database engine, to store user information
+        </li>
+        <li>
+          <a href="https://aws.amazon.com/">Amazon Web Services</a> (AWS) to store user uploaded images
+        </li>
+        <li>
+          The <a href="https://en.gravatar.com/">Gravatar</a> service, which shows a user's avatar image based upon their email
+        </li>
+        <li>
+          <a href="http://getbootstrap.com/">Bootstrap's</a> CSS framework in conjunction with SASS (for styling and layout)
+        </li>
+        <li>
+          The <a href="https://jquery.com/">jQuery</a> javascript library
+        </li>
+        <li>
+          <a href="https://github.com/markedwardnewman/sample_app">Github</a> for version control
+        </li>
+        <li>
+          <a href="https://www.heroku.com/">Heroku</a>, where it is proudly hosted
+        </li>
+      </ul>
+      <br>
+    </div>
+
+    <div class="col-md-12">
+      <h2 class="text-left">Sign up and confirm your email to see all of the magnificent content!</h2>
+      <br>
+      <div class="center">
+        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<%= link_to image_tag("rails.png", alt: "Rails logo"),'http://rubyonrails.org/' %>
 <% end %>
